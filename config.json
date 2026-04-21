@@ -1,0 +1,12 @@
+{
+    "default_url": "https://freecash.com",
+    "persona": "professional",
+    "proxy": {
+        "enabled": false,
+        "host": "",
+        "port": 0,
+        "username": "",
+        "password": ""
+    },
+    "ai_backend_url": "https://your-ngrok-url.ngrok.io/answer"
+}
