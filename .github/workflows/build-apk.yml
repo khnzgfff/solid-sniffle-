@@ -1,37 +1,27 @@
-name: 🛡️ Build Stealth Survey APK
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.stealth.browser">
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: 🔧 Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-          
-      - name: 🤖 Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
-          
-      - name: 📦 Grant execute permission for gradlew
-        run: chmod +x ./app/gradlew
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
         
-      - name: 🛠️ Build APK
-        run: |
-          cd app
-          ./gradlew assembleRelease
-          
-      - name: 📤 Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: StealthSurvey
-          path: app/build/outputs/apk/release/*.apk
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+    </application>
+</manifest>
